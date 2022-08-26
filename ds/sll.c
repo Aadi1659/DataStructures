@@ -105,6 +105,26 @@ void deleteEnd(LLINK *ptr){
     }
 }
 
+void alternateDelete(LLINK *ptr){
+    NODE *current,*previous,*temp;
+    if (ptr->head==NULL) {
+        printf("Nothing to delete list empty\n");
+    }
+    
+    previous = ptr->head;
+    current = ptr->head->link;
+    while (previous!=NULL && current!=NULL) {
+        previous->link = current->link;
+        printf("deleted node is %d\n",current->data);
+        previous = previous->link;
+        free(current);
+        if (previous!=NULL) {
+            current = previous->link;
+        }
+    }
+
+}
+
 void destroy(LLINK *ptr){
     NODE *temp;
     if (ptr->head==NULL) {
