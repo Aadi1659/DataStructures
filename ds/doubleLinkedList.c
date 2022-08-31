@@ -106,6 +106,27 @@ void deleteEnd(DLIST *ptr){
 
 }
 
+void sort(DLIST *ptr){
+    NODE *prev=NULL;
+    NODE *current = ptr->head;
+    int temp;
+    if (ptr->head==NULL) {
+        printf("list empty cannot sort..\n");
+    }
+    else {
+        for (current=ptr->head; current!=NULL;current = current->rlink) {
+            for (prev=current->rlink;prev!=NULL;prev=prev->rlink) {
+                if (current->data>prev->data) {
+                    temp = current->data;
+                    current->data = prev->data;
+                    prev->data = temp;
+                }
+            }
+        }
+    }
+        
+}
+
 int main(){
     DLIST l1;
     init(&l1);
