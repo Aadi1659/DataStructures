@@ -127,6 +127,15 @@ void sort(DLIST *ptr){
         
 }
 
+void merge(DLIST *ptr1,DLIST *ptr2){
+    NODE *temp = ptr1->head;
+    while (temp->rlink!=NULL) {
+        temp = temp->rlink;
+    }
+    temp->rlink = ptr2->head;
+    ptr2->head->llink = ptr1->head;
+}
+
 int main(){
     DLIST l1;
     init(&l1);
@@ -134,8 +143,27 @@ int main(){
     insertFront(&l1,30);
     insertRear(&l1, 40);
 
-    display(&l1);
+    // display(&l1);
     //deleteFront(&l1);
-    deleteEnd(&l1);
+    // deleteEnd(&l1);
+    display(&l1);
+    sort(&l1);
+    printf("sorted list is \n");
+    display(&l1);
+    printf("The second list is ...\n");
+    DLIST l2;
+    init(&l2);
+    insertRear(&l2,40);
+    insertRear(&l2,30);
+    insertRear(&l2,20);
+    insertRear(&l2,10);
+    printf("unsorted list is \n");
+    display(&l2);
+    printf("sorted list is \n");
+    sort(&l2);
+    display(&l2);
+    printf("merged list is ...");
+    merge(&l1, &l2);
+    sort(&l1);
     display(&l1);
 }
