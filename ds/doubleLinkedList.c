@@ -135,6 +135,18 @@ void merge(DLIST *ptr1,DLIST *ptr2){
     temp->rlink = ptr2->head;
     ptr2->head->llink = ptr1->head;
 }
+void takeInput(DLIST *ptr){
+    int input;
+    while (input!=-1) {
+        printf("Enter the list element.Enter -1 to stop the loop..\n");
+        scanf("%d",&input);
+        if (input!=-1) {
+            insertRear(ptr,input);
+            
+        }
+        
+    }
+}
 
 int main(){
     DLIST l1;
