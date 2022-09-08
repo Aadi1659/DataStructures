@@ -27,14 +27,14 @@ void push(STACK *ptr,int element){
     
 }
 
-int pop(STACK *ptr){
+float pop(STACK *ptr){
     if(ptr->top==-1){
         printf("Stack is empty cannot delete..\n");
     }
     else{
-        int x = ptr->arr[ptr->top];
+        float x = ptr->arr[ptr->top];
         ptr->top --;
-        printf("Deleted element is %d\n",x);
+        printf("Deleted element is %f\n",x);
         return x;
     }
 }
@@ -53,7 +53,7 @@ int full(STACK *ptr){
     return 0;
 }
 
-float evaluate(char x,int op1,int op2){
+float evaluate(char x,int op1,float op2){
     switch (x)
     {
     case '+':
@@ -73,7 +73,8 @@ float evaluate(char x,int op1,int op2){
 int main(){
     STACK s;
     char x;
-    int op1,op2,result;
+    int op1;
+    float result,op2;
     init(&s);
     while ((x=getchar())!='\n')
     {
@@ -90,8 +91,8 @@ int main(){
         }
         
     }
-    //result = pop(&s);
-    printf("Value is %d\n",result);
+    result = pop(&s);
+    printf("Value is %f\n",result);
 }
 
 
