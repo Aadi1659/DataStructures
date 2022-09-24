@@ -23,21 +23,22 @@ void push(STACK *ptr, float element) {
 
 int pop(STACK *ptr) {
   if (ptr->top == -1) {
-    // printf("Stack is empty cannot delete..\n");
+    printf("Stack is empty cannot delete..\n");
   } else {
-    int x = ptr->arr[ptr->top];
+    char x = ptr->arr[ptr->top];
     ptr->top--;
-    // printf("Deleted element is %d\n", x);
+    printf("Deleted element is %c\n", x);
     return x;
   }
 }
 
 int peep(STACK *ptr) {
   if (ptr->top == -1) {
-    // printf("Stack is empty cannot delete..\n");
+    printf("Stack is empty cannot delete..\n");
   } else {
-    int x = ptr->arr[ptr->top];
-    // printf("The element at the top of the stack is %d\n", x);
+    char x = ptr->arr[ptr->top];
+    
+    printf("The element at the top of the stack is %c\n", x);
     return x;
   }
 }
@@ -81,14 +82,31 @@ char infixToPostfix(char *infix, char *postfix,STACK *ptr) {
   push(ptr, '#');
   while (infix[i] != '\0') {
     ch = infix[i];
-    while (stackPrec(peep(ptr)) > inputPrec(ch)) {
-      postfix[j++] = pop(ptr);
+    if (isalpha(ch) || isdigit(ch)) {
+      postfix[j] = ch;
+      printf("added %c\n",ch);
+      j++;
+
     }
-    if (inputPrec(ch) != stackPrec(peep(ptr))) {
+    else {
+      while (stackPrec(peep(ptr)) > inputPrec(ch) && ch!=peep(ptr)) {
+        postfix[j] = pop(ptr);
+        printf("popped %c\n",postfix[j]);
+        printf("added %c\n",postfix[j]);
+        j++;
+
+
+      }
+      if (inputPrec(ch) != stackPrec(peep(ptr))) {
+      printf("pushed %c\n",ch);
       push(ptr, ch);
-    } else {
-      pop(ptr);
+      } 
+      else {
+        printf("popped 1 %c\n",ch);
+        pop(ptr);
+      }
     }
+    
     i++;
   }
   while (peep(ptr) != '#') {
