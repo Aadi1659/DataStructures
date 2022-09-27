@@ -79,6 +79,7 @@ int main(){
     scanf("%d",&n);
     char c;
     int ele;
+    int x;
     while(n--){
         scanf(" %c",&c);
         switch (c) {
@@ -92,8 +93,8 @@ int main(){
                 printf("%d ",validate(&ptr,ele));
                 break;
             case 'D':
-                int x = pop(&ptr);
-                printf("%d",x);
+                x = pop(&ptr);
+                printf("%d ",x);
                 break;
             case 'P':
                 ele = topElement(&ptr);
